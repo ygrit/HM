@@ -1,11 +1,23 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include('partials/_header') %>
+<main class="content">
+  <section>
+    <h1> Bonjour</h1>
+    <h2>Voulez vous signaler un problème? </h2>
+    <h3>Voir la liste des problèmes existants</h3>:
+    <a link href=""></a>
+        
+    <form action="/tickets" method="get">
+      <div>
+        <input type="text" name="tickets" placeholder="Votre ticket " />
+      </div>
+      <button>Prenez un Ticket</button>
+    </form>
+   
+    <p>
+      Ceci est une page de présentation en une colonne, rendue avec EJS, sans framework CSS.
+    </p>
+    
+  </section>
+</main>
+
+<%- include('partials/_footer') %>
