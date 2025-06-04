@@ -12,16 +12,23 @@ router.get(["", "/tickets"], function (req, res, next) {
   });
 });
 
+app.get('/tickets', (req, res) => {
+  res.render('tickets', { tickets });
+});
 
-
-/* GET ticket by Id  /tickets/:id */
+/* GET récupérer ticket par Id  /tickets/:id */
 router.get('/:id', function(req, res, next) {
   res.send('respond with a resource');
 });
-/* POST ticket /tickets/ */
-router.post('/', function(req, res, next) {
-  res.send('respond with a resource');
+
+
+/* POST pour créer un ticket  */
+router.post('/tickets', function(req, res, next) {
+
+  tickets.push(req.body.ticket)
+  res.send(tickets.joint(','));
 });
+
 // cities.push(req.body.city)
 // res.send(cities.join(', '))
 

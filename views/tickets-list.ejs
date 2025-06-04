@@ -1,8 +1,8 @@
 <div class="container">
-    <p>Tickets<p>
+    <p>Tickets</p>
 <ul>
 <% tickets.forEach((ticket) => { %>
-<li><%= ticket.titre %></li>
+<li><%= ticket.titre %> <%= ticket.auteur %> <%= ticket.description %> </li>
 <% }) %>
 </ul>
 <h2>Demander un ticket</h2>
