@@ -1,16 +1,43 @@
 <div class="container">
     <p>Tickets</p>
-<ul>
+    <ul>
+        <% if (tickets.length === 0) { %>
+            <li>Aucun ticket pour l'instant.</li>
+        <% } else { %>
+            <% tickets.forEach((ticket) => { %>
+                <li><strong><%= ticket.titre %></strong> - par <%= ticket.auteur %></li>
+            <% }) %>
+        <% } %>
+    </ul>
+<!--
+    <ul>
 <% tickets.forEach((ticket) => { %>
 <li><%= ticket.titre %> <%= ticket.auteur %> <%= ticket.description %> </li>
 <% }) %>
 </ul>
-<h2>Demander un ticket</h2>
 <form method="post" action="/tickets">
 <div class="mb-3">
 <label for="ticket" class="form-label">Ticket</label>
 <input type="text" class="form-control" id="ticket" name="ticket"/>
 </div>
 <button type="submit" class="btn btn-primary">Envoyer ma demande</button>
+</form>
+-->
+<h2>Demander un ticket</h2>
+
+<form method="post" action="/tickets">
+    <div class="mb-3">
+        <label for="titre" class="form-label">Titre</label>
+        <input type="text" class="form-control" id="titre" name="titre"/>
+    </div>
+    <div class="mb-3">
+        <label for="auteur" class="form-label">Auteur</label>
+        <input type="text" class="form-control" id="auteur" name="auteur"/>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" name="description"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Envoyer ma demande</button>
 </form>
 </div>

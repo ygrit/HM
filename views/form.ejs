@@ -6,3 +6,30 @@ id="" name="city" value="<%= typeof city !== 'undefined' ? city : '' %>"
 <%= errors[0].msg %>
 <% } %>
 </div>
+
+<h1 class="page-title"><%= titre %></h1>
+
+    <form action="/tickets/enregistrer" class="form" method="post">
+      <input type="hidden" name="id" value="<%= ticket?.id %>" />
+        <label for="titre">Titre <span class="required">*</span></label>
+    <input
+    type="text"
+    id="titre"
+    name="titre"
+    value="<%= ticket?.titre %>"
+    class="form-input"
+    required
+    placeholder="Entrez le titre du ticket"
+  />
+
+  <label for="description">Description <span class="required">*</span></label>
+  <textarea
+    id="description"
+    name="description"    
+    class="form-textarea"
+    rows="4"
+    placeholder="Description du problème rencontré"
+    minlength="3"><%= ticket?.description %></textarea>
+
+  <button type="submit" class="form-btn">Valider</button>
+</form>

@@ -3,10 +3,9 @@ const e= require("express");
 const users = [
   {id : 1, username : "cathy7", password : "123pwd!bB", role : "student"},
   {id : 2, username : "antonio45", password : "123pwd!bB", role : "student"},
-  {id : 3, username : "sgobin", password: "pa$$w0rd", role: "teacher"  }
+  {id : 3, username : "sgobin", password: "pa$$w0rd", role: "prof"}
   
 ];
-
 
 //trouver l'utilisateur par nom et mdp
 
