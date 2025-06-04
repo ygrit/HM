@@ -1,12 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 
-
-//
-const ticketsServices = require('./services/ticketsServices')
-
 const port = process.env.PORT || 3000;
-
 
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -41,7 +36,7 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-/*
+
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
@@ -51,9 +46,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-*/
-//pour gérer les erreurs
 
+//pour gérer les erreurs
+/*
 app.use(function (req, res) {
   res.render("erreur404");
 });
@@ -62,9 +57,6 @@ app.use(function (err, req, res, next) {
   console.error(err.stack);
   res.status(500).render("erreur");
 });
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+*/
 
 module.exports = app;

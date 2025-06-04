@@ -1,0 +1,16 @@
+<div class="container">
+    <p>Tickets<p>
+<ul>
+<% tickets.forEach((ticket) => { %>
+<li><%= ticket.titre %></li>
+<% }) %>
+</ul>
+<h2>Demander un ticket</h2>
+<form method="post" action="/tickets">
+<div class="mb-3">
+<label for="ticket" class="form-label">Ticket</label>
+<input type="text" class="form-control" id="ticket" name="ticket"/>
+</div>
+<button type="submit" class="btn btn-primary">Envoyer ma demande</button>
+</form>
+</div>

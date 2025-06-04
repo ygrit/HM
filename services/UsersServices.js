@@ -1,24 +1,26 @@
 const e= require("express");
-var { format, add } = require("date-fns");
-//pour gérer les libraries des dates
 
-const tickets = [];
-let idx = 0;
+const users = [];
 
-exports.findAllTickets = () =>{
-    return tickets;
-};
 
-exports.findTicketById = (id) => {
-   // return tickets.find(ticket) => ticket.id ==id};
-   return {};
-}
+//créer l'utilisateur
 
-exports.createTicket = (id) => {
-    
-}
+//ajouter un ticket
+exports.addUser = (name, mail, password) => {
+      const newUser = {
+      id: idx++,
+      name,
+      mail,
+      password
+    };
+    users.push(newUser);
+    return newUser;
+  };
 
-exports.modifyTicket = (id) =>{
-    return 
-}
+//trouver l'utilisateur par nom
+exports.findUserByName
+
+//supprimer l'utilisateur
+
+exports.deleteUser
 

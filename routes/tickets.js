@@ -1,21 +1,24 @@
 var express = require('express');
 var router = express.Router();
+const { createTicket, findAllTickets, findTicketById } = require('../services/ticketsServices');
 
-/* GET tickets listing. /tickets/ */
+/* GET tickets  /tickets */
 
 router.get(["", "/tickets"], function (req, res, next) {
   res.render("principal", {
-    bodyFragment: "partials/tickets",
+    bodyFragment: "tickets-list",
+    tickets: findAllTickets(),
     session: req.session,
   });
 });
 
 
-/* GET ticket listing. /tickets/:id */
+
+/* GET ticket by Id  /tickets/:id */
 router.get('/:id', function(req, res, next) {
   res.send('respond with a resource');
 });
-/* GET tickets listing. /tickets/ */
+/* POST ticket /tickets/ */
 router.post('/', function(req, res, next) {
   res.send('respond with a resource');
 });
