@@ -1,10 +1,15 @@
 const e= require("express");
 var { format, add } = require("date-fns");
 const { id } = require("date-fns/locale");
+//importer db
+const { MongoClient, UUID } = require("mongodb");
+const {db, client } = require("./db");
+
 //pour gérer les libraries des dates
 
 //création des tickets de base
-const tickets = [
+const tickets = [];
+/*
     {id:1, titre: "ticket1", 
       auteur: { id: 3, name: "Mike Jonson", role: "student" },
       description: "desc1",
@@ -24,39 +29,71 @@ const tickets = [
     creation: Date.now(),
     creation_formatted: format(Date.now(), "dd/MM/yyyy HH:mm"),},
 ]
+    */
 
-let idx = 3;
+//let idx = 3;
 
-exports.findAllTickets = () =>{
-    return tickets;
-};
-
-exports.findTicketById = (id) => {
-   // return tickets.find(ticket) => ticket.id ==id};
-   return {};
+//trouver tous les tickets pour affichage sur la page
+exports.async findAllTickets() {
+  const db = getDb();
+  const tickets = await db.collection('tickets').find().toArray();
+  return tickets;
 }
 
-//ajouter un ticket
-exports.createTicket = (titre, auteur, description) => {
+
+//trouver un ticket par Id
+exports.async  findTicketById(id) {
+  const db = getDb();
+  const ObjectId = require('mongodb').ObjectId;
+  return await db.collection('tickets').findOne({ _id: new ObjectId(id) });
+}
+
+//ajouter un ticket !!!
+
+ exports.createTicket = async(titre, auteur, description) {
+    const db = getDb();
     const creation = Date.now();
     const creation_formatted = format(creation, "dd/MM/yyyy HH:mm");
+    const auteurDto= {
+      _id : auteur._id,
+      name: auteur.name,
+      username : auteur.username;
+      role: auteur.role,
+    }
+    // Compléter les champs automatiquement
     const newTicket = {
-      id: idx++,
+      _id : UUID7(),
       titre,
-      auteur,
+      auteur: auteurDto,
       description,
       creation,
       creation_formatted,
     };
-    tickets.push(newTicket);
+  
+    const result = await db.collection('tickets').insertOne(newTicket);
     return newTicket;
-  };
+  }
 
-  exports.modifyTicket = (id) =>{
 
-    return ticket;
+
+  exports.modifyTicket = async (id, titre, description) =>{
+    let index = tickets.findIndex((ticket) => ticket.id == id);
+
+    tickets[index] = {
+      id: id,
+      titre,
+      auteur: tickets[index].auteur,
+      description,
+      creation: tickets[index].creation,
+      creation_formatted: tickets[index].creation_formatted,
+    };
 }
 
-exports.deleteTicket = (id) => {
-  tickets = tickets.filter((ticket) => ticket.id != id);
-};
+
+//suppression
+
+exports.deleteTicket= async (id) {
+  const db = getDb();
+  const result = await db.collection('tickets').deleteOne({ _id: id });
+  return result.deletedCount; // 1 si supprimé, 0 sinon
+}

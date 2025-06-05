@@ -1,16 +1,8 @@
-<input type="text" class="form-control <%= typeof errors !== 'undefined' && errors.length > 0 ? 'is-invalid': '' %>"
-id="" name="city" value="<%= typeof city !== 'undefined' ? city : '' %>"
-/>
-<div class="invalid-feedback">
-<% if (typeof errors !== 'undefined' && errors.length > 0) { %>
-<%= errors[0].msg %>
-<% } %>
-</div>
-
+<div class="container">
 <h1 class="page-title"><%= titre %></h1>
 
-    <form action="/tickets/enregistrer" class="form" method="post">
-      <input type="hidden" name="id" value="<%= ticket?.id %>" />
+    <form action="/tickets/save" class="form" method="post">
+      <input type="hidden" name="ticket" form-control <%= typeof errors !== 'undefined' && errors.length > 0 ? 'is-invalid': '' %>" value="<%= typeof ticket !== 'undefined' ? ticket : '' %>" />
         <label for="titre">Titre <span class="required">*</span></label>
     <input
     type="text"
@@ -27,9 +19,9 @@ id="" name="city" value="<%= typeof city !== 'undefined' ? city : '' %>"
     id="description"
     name="description"    
     class="form-textarea"
-    rows="4"
-    placeholder="Description du problème rencontré"
+    placeholder="Sujet"
     minlength="3"><%= ticket?.description %></textarea>
 
   <button type="submit" class="form-btn">Valider</button>
 </form>
+</div>

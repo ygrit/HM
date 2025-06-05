@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-//const ticketsServices = require('../services/ticketsServices');
-//const usersServices = require('../services/usersServices');
+
+
+const ticketsServices = require('../services/ticketsServices');
+const usersServices = require('../services/usersServices');
 
 
 /* GET home page. */
